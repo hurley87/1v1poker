@@ -1,0 +1,59 @@
+<template name='home'>
+	{{#if currentUser}}
+		{{> loggedIn }}
+	{{else}}
+		{{#if loggingIn }}
+			Loggin In...
+		{{else}}
+			{{> notLoggedIn}}
+		{{/if}}
+	{{/if}}
+</template>
+
+<template name='loggedIn'>
+	<img src="{{currentUser.profile.profile_img}}">{{currentUser.profile.name}} - <a class='logout' href="#">Logout</a>
+	{{> gameList }}
+	{{> userList}}
+</template>
+
+<template name='notLoggedIn'>
+	<button class='facebookLogin' href="#">Login with Facebook</button>
+</template>
+
+<template name='userList'>
+	<div class='column'>
+		<h1>User</h1>
+		<p>Choose another user to start a game with them:</p>
+		<ul>
+			{{#each users}}
+				{{> userItem}}
+			{{/each}}
+		</ul>		
+	</div>
+</template>
+
+<template name='gameList'>
+	<h1>Games</h1>
+	
+	<ul>
+		{{#each games}}
+			{{> gameItem}}
+		{{/each}}
+	</ul>
+</template>
+
+<template name='gameItem'>
+	<li>
+		<a href="/game/{{_id}}"> Game with {{otherPlayer}}
+			<span>
+				{{#if inProgress}}
+					{{started}}
+				{{/if}}
+			</span>
+		</a>
+	</li>
+</template>
+
+<template name='userItem'>
+	<li><button>{{profile.name}}</button></li>
+</template>

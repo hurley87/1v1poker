@@ -1,0 +1,16 @@
+<template name='play'>
+	{{#if currentUser }}
+		{{> status}}
+	{{/if}}
+</template>
+
+<template name='status'>
+	<p><a href="/">Go Home</a></p>
+	<p><a class='dgame' href="/">Delete Game</a></p>
+	<h1>{{user}} vs {{otherPlayer}}</h1>
+	<h2>
+	{{#if inProgress}}
+		
+	{{/if}}
+	</h2>
+</template>
