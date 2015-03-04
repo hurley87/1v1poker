@@ -12,14 +12,6 @@ Template.notLoggedIn.events({
 	}
 });
 
-// Template.loggedIn.helpers({
-// 	user_image: function() {
-// 		if(Meteor.user().services.facebook) {
-// 			return 'http://graph.facebook.com/' + Meteor.user().services.facebook.id + "/picture/?type=large";
-// 		}
-// 	}
-// });
-
 Template.userList.helpers({
 	users: function() {
 		var myid = Meteor.userId();

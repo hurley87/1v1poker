@@ -12,23 +12,15 @@ GameFactory.createGame = function(playerIds) {
 		deck: deck,
 		players: players,
 		currentTurn: playerIds,
-		dealer: false,
-		std: false,
 		inProgress: true,
-		started: new Date(),
-		trump: null
+		started: new Date()
 	};
 };
 
 GameFactory.dealPlayers = function (players, deck) {
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 2; i++) {
         Object.keys(players).forEach(function (id) {
             players[id].chest.push(deck.shift());
-        });
-    }
-    for (var i = 5; i < 11; i++) {
-        Object.keys(players).forEach(function (id) {
-            players[id].board.push(deck.shift());
         });
     }
 };
@@ -38,12 +30,9 @@ function createPlayers(ids) {
 
 	ids.forEach(function(id){
 		o[id] = {
-			chest: [],
-			board: [],
+			hand: [],
 			dealer: false,
 			score: {
-				euchre: 0,
-				tricks: 0,
 				points: 0
 			}
 		};
@@ -57,7 +46,7 @@ function createDeck() {
 	var cards = [];
 
 	suits.forEach(function(suit) {
-		for(var i = 9; i <= 14; i++) {
+		for(var i = 2; i <= 14; i++) {
 			var name = i;
 			if(i===14) name = 'A';
 			if(i===11) name = 'J';
