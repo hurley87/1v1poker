@@ -3,8 +3,6 @@ GameFactory = {};
 GameFactory.createGame = function(playerIds) {
 	var deck = createDeck();
 	var	players = createPlayers(playerIds);
-	var dealer = Meteor.userId();
-	players[dealer].dealer = true;
 
 	GameFactory.dealPlayers(players, deck);	
 
@@ -20,22 +18,24 @@ GameFactory.createGame = function(playerIds) {
 GameFactory.dealPlayers = function (players, deck) {
     for (var i = 0; i < 2; i++) {
         Object.keys(players).forEach(function (id) {
-            players[id].chest.push(deck.shift());
+            players[id].hand.push(deck.shift());
         });
     }
 };
 
 function createPlayers(ids) {
-	var o = {};
+	var o = [];
 
 	ids.forEach(function(id){
-		o[id] = {
+		player = {
+			_id: id,
 			hand: [],
 			dealer: false,
 			score: {
 				points: 0
 			}
 		};
+		o.push(player);
 	});
 
 	return o;

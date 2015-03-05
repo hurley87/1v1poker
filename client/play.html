@@ -2,12 +2,16 @@
 	{{#if currentUser }}
 		{{> status}}
 	{{/if}}
+	{{this.players[1]}} vs {{this.players}}
+	{{#each this.deck}}
+		<p>{{name}} of {{suit}}</p>
+	{{/each}}
 </template>
 
 <template name='status'>
 	<p><a href="/">Go Home</a></p>
 	<p><a class='dgame' href="/">Delete Game</a></p>
-	<h1>{{user}} vs {{otherPlayer}}</h1>
+
 	<h2>
 	{{#if inProgress}}
 		

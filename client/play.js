@@ -4,3 +4,7 @@ Template.status.events({
 		Games.remove(game._id);
 	}
 });
+
+Template.play.helpers({
+	
+});
