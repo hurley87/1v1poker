@@ -3,7 +3,9 @@
 		{{> loggedIn }}
 	{{else}}
 		{{#if loggingIn }}
-			Loggin In...
+			 <div class="progress">
+			      <div class="indeterminate"></div>
+			  </div>
 		{{else}}
 			{{> notLoggedIn}}
 		{{/if}}
@@ -11,49 +13,68 @@
 </template>
 
 <template name='loggedIn'>
-	<img src="{{currentUser.profile.profile_img}}">{{currentUser.profile.name}} - <a class='logout' href="#">Logout</a>
+	<div class='container'> 
+	<h2 class='header'>Hey {{currentUser.profile.name}},</h2> 
+	<h4>Thanks for joining 1v1 Poker. You start with $10 worth of chips. $10 not enough? Buy more chips. </h4>
+	<p><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Buy more chips</a></p>
 	{{> gameList }}
 	{{> userList}}
+
+	  <!-- Modal Trigger -->
+  	
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Agree</a>
+    </div>
+  </div>
+        
 </template>
 
 <template name='notLoggedIn'>
-	<button class='facebookLogin' href="#">Login with Facebook</button>
+	<button class='facebookLogin waves-effect waves-light btn blue lighten-3' href="#">Login with Facebook</button>
 </template>
 
 <template name='userList'>
-	<div class='column'>
-		<h1>User</h1>
-		<p>Choose another user to start a game with them:</p>
-		<ul>
+		<h4 class='header'>Feel free to challenge anyone below.</h4>
+		<ul class="collection">
 			{{#each users}}
 				{{> userItem}}
 			{{/each}}
 		</ul>		
-	</div>
 </template>
 
 <template name='gameList'>
 	<h1>Games</h1>
-	
-	<ul>
+	{{noGames}}
+	<div class='collection'>
 		{{#each games}}
 			{{> gameItem}}
 		{{/each}}
-	</ul>
+	</div>
 </template>
 
 <template name='gameItem'>
-	<li>
-		<a href="/game/{{_id}}"> Game with {{otherPlayer}}
-			<span>
+		<a class='collection-item' href="/game/{{_id}}"> Game with {{otherPlayer}} that started
 				{{#if inProgress}}
 					{{started}}
 				{{/if}}
-			</span>
 		</a>
-	</li>
 </template>
 
 <template name='userItem'>
-	<li><button>{{profile.name}}</button></li>
+	<li class="collection-item avatar">
+      <img height='90%' src="{{profile.profile_img}}" alt="" class="circle">
+      <span class="title">{{profile.name}}</span>
+      <p>$5,000</p>
+      <p><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i></p>
+      <a href="#!" class="secondary-content userItem btn-large waves-effect waves-light red">Challenge</a>
+
+    </li>
 </template>

@@ -11,3 +11,8 @@ iron:router
 service-configuration
 mrt:moment
 msavin:mongol
+meteorhacks:npm
+
+
+npm-container
+materialize:materialize

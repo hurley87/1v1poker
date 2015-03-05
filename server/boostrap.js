@@ -4,8 +4,8 @@ ServiceConfiguration.configurations.remove({
  
 ServiceConfiguration.configurations.insert({
     service: 'facebook',
-    appId: '1407855689520970',
-    secret: '52d8621bf2a23b9523e2a9848886daa6'
+    appId: Meteor.settings.facebook_id,
+    secret: Meteor.settings.facebook_secret
 });
 
 Accounts.onCreateUser(function(options,user) {
@@ -19,3 +19,19 @@ Accounts.onCreateUser(function(options,user) {
 
   return user;
 });
+
+var gateway;
+
+Meteor.startup(function () {
+  var braintree = Meteor.npmRequire('braintree');
+
+  gateway = braintree.connect({
+    environment: braintree.Environment.Sandbox,
+    publicKey: Meteor.settings.BT_PUBLIC_KEY,
+    privateKey: Meteor.settings.BT_PRIVATE_KEY,
+    merchantId: Meteor.settings.BT_MERCHANT_ID
+  });
+
+  console.log(gateway)
+});
+

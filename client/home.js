@@ -1,7 +1,15 @@
-Template.loggedIn.events({
-	'click .logout':function(evt, template) {
-		evt.preventDefault();
-		Meteor.logout();
+
+
+Template.loggedIn.events({ 
+	'click .modal-trigger': function() {
+		$('#modal1').openModal({
+		      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+		      opacity: .5, // Opacity of modal background
+		      in_duration: 300, // Transition in duration
+		      out_duration: 200, // Transition out duration
+		      ready: function() { console.log('Ready'); }, // Callback for Modal open
+		      complete: function() { console.log('Closed'); } // Callback for Modal close
+		    });
 	}
 });
 
@@ -26,7 +34,7 @@ Template.userList.helpers({
 });
 
 Template.userItem.events({
-    'click button': function (evt, template) {
+    'click .userItem': function (evt, template) {
         Meteor.call('createGame', template.data._id);
     }
 });
@@ -40,12 +48,10 @@ Template.gameList.helpers({
         return Games.find({ inProgress: true }).map(function (game) {
             // game.otherPlayer = Meteor.users.findOne(otherId(game)).username;
              game.started = moment(game.started).fromNow();
-            // if (game.players[Meteor.userId()].dealer == true) {
-            // 	game.dealer = false;
-            // } else {
-            // 	game.dealer = true;
-            // }
             return game;
         });
+    },
+    noGames: function() {
+    	return Games.loaded().count();
     }
 });

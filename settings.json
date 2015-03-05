@@ -1,5 +1,7 @@
-{facebook_secret: {
-	appId: '1407855689520970',
-    secret: '52d8621bf2a23b9523e2a9848886daa6'
- }
+{
+	"facebook_id": "1407855689520970",
+	"facebook_secret": "52d8621bf2a23b9523e2a9848886daa6",
+	"BT_PUBLIC_KEY": "7kznjxffhfg2dgrv",
+	"BT_PRIVATE_KEY": "1722385b4d022039a50e898e17ccdf31",
+	"BT_MERCHANT_ID": "ytfxzbhbx9r6j74n"
 }
