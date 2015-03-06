@@ -12,9 +12,12 @@ Accounts.onCreateUser(function(options,user) {
   check(options, Object);
   check(user, Object);
 
-  options.profile.email = user.services.facebook.email;
-  options.profile.facebookId = user.services.facebook.id;
-  options.profile.profile_img = 'http://graph.facebook.com/' + user.services.facebook.id + "/picture/?type=large";
+  var profile = options.profile;
+  profile.email = user.services.facebook.email;
+  profile.facebookId = user.services.facebook.id;
+  profile.profile_img = 'http://graph.facebook.com/' + user.services.facebook.id + "/picture/?type=large";
+  profile.bank = 10;
+  profile.rank = 'Rookie';
   user.profile = options.profile;
 
   return user;
@@ -32,6 +35,5 @@ Meteor.startup(function () {
     merchantId: Meteor.settings.BT_MERCHANT_ID
   });
 
-  console.log(gateway)
 });
 

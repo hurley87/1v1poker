@@ -8,11 +8,17 @@ if(Meteor.isServer) {
 	Meteor.publish('users', function() {
 		return Meteor.users.find();
 	});
+
+	Meteor.publish('games-count', function() {
+	  return Counts.publish(this, 'game-counter', Games.find());
+	});
 }
 
 if(Meteor.isClient) {
 	Meteor.subscribe('games');
 	Meteor.subscribe('users');
+	Meteor.subscribe('games-count');
+
 }
 
 Games.allow({
@@ -57,10 +63,7 @@ function createPlayers(ids) {
 		player = {
 			_id: id,
 			hand: [],
-			dealer: false,
-			score: {
-				points: 0
-			}
+			dealer: false
 		};
 		o.push(player);
 	});

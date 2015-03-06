@@ -13,28 +13,32 @@
 </template>
 
 <template name='loggedIn'>
-	<div class='container'> 
-	<h2 class='header'>Hey {{currentUser.profile.name}},</h2> 
-	<h4>Thanks for joining 1v1 Poker. You start with $10 worth of chips. $10 not enough? Buy more chips. </h4>
-	<p><a class="waves-effect waves-light btn modal-trigger" href="#modal1">Buy more chips</a></p>
-	{{> gameList }}
-	{{> userList}}
+	<div class='row'> 
+		<div class='col s12 m4 l3'>
+			<h1 class='header'>1v1 Poker</h1>
+			{{> profile }}
+		</div>
+		<div class="col s12 m8 l9">
+			{{> userList}}
+	  	</div>
+  </div>     
+</template>
 
-	  <!-- Modal Trigger -->
-  	
-  </div>
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Agree</a>
-    </div>
-  </div>
+<template name='profile'>
+	<div class="card">
+        <div class="card-image">
+          <img src="{{currentUser.profile.profile_img}}">
+        </div>
+        <div class="card-content">
+          <h4>{{currentUser.profile.name}}</h4>
+          <p>$5000 - Allstar</p>
+        </div>
+        <div class="card-action">
+              {{> gameList }}
+        </div>
         
+  	</div>
+
 </template>
 
 <template name='notLoggedIn'>
@@ -42,29 +46,28 @@
 </template>
 
 <template name='userList'>
-		<h4 class='header'>Feel free to challenge anyone below.</h4>
+		<br>
+		<h4 class='header'>Invite someone to play Texas Hold'em.</h4>
+		<hr>	
 		<ul class="collection">
 			{{#each users}}
 				{{> userItem}}
 			{{/each}}
-		</ul>		
+		</ul>	
 </template>
 
 <template name='gameList'>
-	<h1>Games</h1>
-	{{noGames}}
-	<div class='collection'>
 		{{#each games}}
 			{{> gameItem}}
 		{{/each}}
-	</div>
+	<!-- {{noGames}} -->
 </template>
 
 <template name='gameItem'>
-		<a class='collection-item' href="/game/{{_id}}"> Game with {{otherPlayer}} that started
-				{{#if inProgress}}
-					{{started}}
-				{{/if}}
+		<a href="/game/{{_id}}"> Game with {{otherPlayer}} that started
+			{{#if inProgress}}
+				{{started}}
+			{{/if}}
 		</a>
 </template>
 
@@ -74,7 +77,6 @@
       <span class="title">{{profile.name}}</span>
       <p>$5,000</p>
       <p><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i></p>
-      <a href="#!" class="secondary-content userItem btn-large waves-effect waves-light red">Challenge</a>
-
+      <a href="#!" class="secondary-content userItem btn-large waves-effect waves-light red">Invite</a>
     </li>
 </template>

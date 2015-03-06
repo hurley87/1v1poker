@@ -52,6 +52,6 @@ Template.gameList.helpers({
         });
     },
     noGames: function() {
-    	return Games.loaded().count();
+    	return 4;
     }
 });

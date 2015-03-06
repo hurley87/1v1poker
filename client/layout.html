@@ -1,19 +1,34 @@
 <template name='layout'>
-	 {{> nav}} 
+  <div class='full-body'>	 
+  {{> nav}}
 	{{> yield }}
-
-     {{> footer}}   	
+  </div>
+  {{> footer}}  
+    <!-- BUY CHIPS Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Agree</a>
+    </div>
+  </div> 	
 </template>	
 
 <template name='nav'>
 	<nav class='cyan lighten-3'>
 	    <div class="nav-wrapper">
-	    	<a href="#" class="brand-logo"><img  class="responsive-image" src="images/logo-poker2.png"></a>
+	    	<a href="/"><img  class="responsive-image" src="images/logo-poker2.png"></a>
+        {{#if currentUser}}
 	      <div class='right'>
-	      <ul id="nav-mobile" class="right hide-on-med-and-down">
-	        <li><a class='logout' href="#">Logout</a></li>
-	      </ul>
+  	      <ul class="right">
+            <li><a class='modal-trigger' href="#">Buy Chips</a></li>
+            <li><a href="/tutorial">Tutorial</a></li>
+  	        <li><a class='logout' href="#">Logout</a></li>
+  	      </ul>
 	      </div>
+        {{/if}}
 	    </div>
 	 </nav>
 </template>	
@@ -23,24 +38,26 @@
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="white-text">1V1 Poker</h5>
+                <p class="grey-text text-lighten-4">Play Texas Holdem with your friends.</p>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
+                  <li><a class="grey-text text-lighten-3 modal-trigger" href="#!">Buy Chips</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/tutorial">Tutorial</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/tutorial">Legal</a></li>
+
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
+            © 2014 1V1 Poker
             </div>
           </div>
         </footer>
 </template>	
+
+
