@@ -31,7 +31,7 @@
         </div>
         <div class="card-content">
           <h4>{{currentUser.profile.name}}</h4>
-  			<p>{{{email}}} <a href="#">Update Email</a></p>
+  			<p><span class='userEmail'>{{{email}}}</span> <a class='updateEmailBtn' href="#">Update Email</a></p>
   			<hr>
           <p>${{currentUser.profile.bank}} - {{currentUser.profile.rank}}</p>
         </div>
@@ -40,6 +40,20 @@
         </div>
         
   	</div>
+
+  	 <div id="updateEmailmodal" class="modal">
+	    <div class="modal-content container">
+	      <form>
+	      <div class='input-field'>
+	      <i class="mdi-editor-mode-edit prefix"></i>
+	      <input type="text" id="email" size="45" class="validate"/>
+	      <label for="email">Email</label>
+	      </div>
+	      <input type="button" id="update-email-btn" value="Update" class="btn waves-effect waves-light right  modal-action modal-close"/>
+	      </form>
+	    </div>
+	      
+	  </div>
 </template>
 
 <template name='notLoggedIn'>
@@ -60,6 +74,7 @@
 <template name='gameList'>
 		{{#each games}}
 			{{> gameItem}}
+			<hr>
 		{{/each}}
 	<!-- {{noGames}} -->
 </template>
@@ -82,8 +97,8 @@
 	<li class="collection-item avatar">
       <img height='90%' src="{{profile.profile_img}}" alt="" class="circle">
       <span class="title">{{profile.name}}</span>
-      <p>{{profile.bank}}</p>
-      <p><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i></p>
+      <p>${{profile.bank}} - {{profile.rank}}</p>
+      <p>{{profile.email}}</p>
       <a href="#!" class="secondary-content userItem btn-large waves-effect waves-light red">Invite</a>
     </li>
 </template>

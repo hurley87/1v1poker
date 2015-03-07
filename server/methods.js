@@ -43,5 +43,11 @@ Meteor.methods({
       return userEmail;
     }
   },
-
+  sendEmail: function(email) {
+    Email.send({to:email, from:'dhurls99@gmail.com', subject:'Thank you for signing up for our project', text:'We will share with you some news about us in a near future. See you soon!'});
+  },
+  updateEmail: function(id, email) {
+    var user = Meteor.users.find({ _id: id}).fetch();
+    Meteor.users.update({ _id:id }, { $set:{"profile.email": email} })
+  }
 });

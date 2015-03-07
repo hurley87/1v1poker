@@ -68,11 +68,9 @@ Template.gameItem.helpers({
 	},
 	otherPlayer: function() {
 		var myId = Meteor.userId();
-		var name = '';
-
-		this.currentTurn.forEach(function() {
-			console.log(this);
-		});	
+		var otherId = _.reject(this.currentTurn, function(id) { return id == myId; });
+		var user = Meteor.users.find({ _id: otherId[0] }).fetch();
+		return user[0].profile.name;
 	}
 });
 
@@ -88,4 +86,27 @@ Template.profile.helpers({
 		var answer = Session.get('facebook_email');
 		return answer;
 	}
-}); 
+});
+
+Template.profile.events({
+	'click .updateEmailBtn': function(evt, template) {
+		
+		$('#updateEmailmodal').openModal({
+	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+	      opacity: .5, // Opacity of modal background
+	      in_duration: 300, // Transition in duration
+	      out_duration: 200, // Transition out duration
+	      ready: function() { console.log('Ready'); }, // Callback for Modal open
+	      complete: function() { console.log('Closed'); } // Callback for Modal close
+	    });
+	},
+	'click #update-email-btn': function(evt, template) {
+		evt.preventDefault();
+		var email = $("#email").val();
+		// Meteor.call('sendEmail', email, function() {
+		// 	Router.go('/');
+		// });
+		$('.userEmail').text(email);
+		Meteor.call('updateEmail', Meteor.userId(), email);
+	}
+});
