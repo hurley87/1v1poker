@@ -1,4 +1,5 @@
 Games = new Meteor.Collection('games');
+Messages = new Meteor.Collection('messages');
 
 if(Meteor.isServer) {
 	Meteor.publish('games', function() {
@@ -8,11 +9,16 @@ if(Meteor.isServer) {
 	Meteor.publish('users', function() {
 		return Meteor.users.find();
 	});
+
+	Meteor.publish('messages', function() {
+		return Messages.find();
+	});
 }
 
 if(Meteor.isClient) {
 	Meteor.subscribe('games');
 	Meteor.subscribe('users');
+	Meteor.subscribe('messages');
 	Meteor.subscribe('games-count');
 
 }
@@ -22,6 +28,13 @@ Games.allow({
 		return true;
 	},
 	remove: function() {
+		return true;
+	}
+});
+
+
+Messages.allow({
+	insert: function() {
 		return true;
 	}
 });

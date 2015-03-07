@@ -1,0 +1,11 @@
+<template name='chat'>
+	<h1>Chat</h1>
+	<div class='input-field'>
+		<i class="mdi-editor-mode-edit prefix"></i>
+		<input type="text" id="message" size="45" class="validate"/>
+		<label for="message">Message</label>
+	</div>
+	{{#each messages}}
+	 	{{sender.profile.name}}: {{message}} - {{timeSent}}<br>
+	{{/each}}
+</template>	
