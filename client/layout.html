@@ -4,14 +4,9 @@
 	{{> yield }}
   </div>
   {{> footer}}  
-    <!-- BUY CHIPS Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Agree</a>
+      {{> payment}}
     </div>
   </div> 	
 </template>	
@@ -23,7 +18,8 @@
         {{#if currentUser}}
 	      <div class='right'>
   	      <ul class="right">
-            <li><a class='modal-trigger' href="#">Buy Chips</a></li>
+            <li><a href="/">Home</a></li>
+            <!-- <li><a class='modal-trigger' href="#">Buy Chips</a></li> -->
             <li><a href="/tutorial">Tutorial</a></li>
   	        <li><a class='logout' href="#">Logout</a></li>
   	      </ul>
@@ -44,7 +40,7 @@
               <div class="col l4 offset-l2 s12">
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
-                  <li><a class="grey-text text-lighten-3 modal-trigger" href="#!">Buy Chips</a></li>
+                 <!--  <li><a class="grey-text text-lighten-3 modal-trigger" href="#!">Buy Chips</a></li> -->
                   <li><a class="grey-text text-lighten-3" href="/tutorial">Tutorial</a></li>
                   <li><a class="grey-text text-lighten-3" href="/tutorial">Legal</a></li>
 
@@ -54,7 +50,7 @@
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 1V1 Poker
+            ©2014 1V1 Poker
             </div>
           </div>
         </footer>

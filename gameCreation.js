@@ -68,7 +68,7 @@ function createPlayers(ids) {
 }
 
 function createDeck() {
-	var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
+	var suits = ['&#9824;', '&#9827;', '&#9829;', '&#9830;'];
 	var cards = [];
 
 	suits.forEach(function(suit) {

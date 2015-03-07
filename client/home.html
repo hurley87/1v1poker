@@ -31,7 +31,7 @@
         </div>
         <div class="card-content">
           <h4>{{currentUser.profile.name}}</h4>
-  			<p><span class='userEmail'>{{{email}}}</span> <a class='updateEmailBtn' href="#">Update Email</a></p>
+  			<p><span class='userEmail'>{{{email}}}</span> <br><a class='updateEmailBtn' href="#">Update Email</a></p>
   			<hr>
           <p>${{currentUser.profile.bank}} - {{currentUser.profile.rank}}</p>
         </div>
@@ -62,7 +62,7 @@
 
 <template name='userList'>
 		<br>
-		<h4 class='header'>Invite someone to play Texas Hold'em.</h4>
+		<h4 class='header'>Invite someone to play Texas Hold'em</h4>
 		<hr>	
 		<ul class="collection">
 			{{#each users}}
@@ -76,7 +76,6 @@
 			{{> gameItem}}
 			<hr>
 		{{/each}}
-	<!-- {{noGames}} -->
 </template>
 
 <template name='gameItem'>
@@ -86,10 +85,11 @@
 		    {{else}}
 		        <div class='waves-effect waves-light btn'>not your turn</div>
 		    {{/if}}
-			<div>Game with {{otherPlayer}} that started</div>
+			<div>Game with {{otherPlayer}} that started
 			{{#if inProgress}}
 				{{started}}
 			{{/if}} 
+			</div>
 		</a>
 </template>
 

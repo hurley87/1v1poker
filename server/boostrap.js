@@ -38,4 +38,3 @@ Meteor.startup(function () {
   process.env.MAIL_URL = 'smtp://postmaster@sandbox9845065a1f4b4a94811faa76872abd41.mailgun.org:45oifdj0skgp9@smtp.mailgun.org:587';
 
 });
-
