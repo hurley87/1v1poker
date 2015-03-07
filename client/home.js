@@ -55,3 +55,37 @@ Template.gameList.helpers({
     	return 4;
     }
 });
+Template.gameItem.helpers({
+	yourTurn: function() {
+		var myId = Meteor.userId();
+		var yourTurnId = this.currentTurn[0];
+
+		if (myId == yourTurnId) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	otherPlayer: function() {
+		var myId = Meteor.userId();
+		var name = '';
+
+		this.currentTurn.forEach(function() {
+			console.log(this);
+		});	
+	}
+});
+
+Template.profile.helpers({
+	email: function() {
+		var answer = Meteor.call('facebook_email', Meteor.userId(), function(error, result) {
+			if (error) {
+				console.log('there was an error');
+			} else {
+				Session.set('facebook_email', result);
+			}
+		});	
+		var answer = Session.get('facebook_email');
+		return answer;
+	}
+}); 

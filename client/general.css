@@ -7,3 +7,12 @@
   body {
   	background-color: #E3FAFC;
   }
+
+.card-image {
+	max-height: 200px;
+	overflow: hidden;
+}
+
+.card-img img{
+	width: 75%;
+}

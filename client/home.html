@@ -14,31 +14,32 @@
 
 <template name='loggedIn'>
 	<div class='row'> 
-		<div class='col s12 m4 l3'>
+		<div class='col s12 m6 l4 offset-l1'>
 			<h1 class='header'>1v1 Poker</h1>
 			{{> profile }}
 		</div>
-		<div class="col s12 m8 l9">
+		<div class="col s12 m6 l6">
 			{{> userList}}
 	  	</div>
   </div>     
 </template>
 
 <template name='profile'>
-	<div class="card">
+	<div class="card  container">
         <div class="card-image">
           <img src="{{currentUser.profile.profile_img}}">
         </div>
         <div class="card-content">
           <h4>{{currentUser.profile.name}}</h4>
-          <p>$5000 - Allstar</p>
+  			<p>{{{email}}} <a href="#">Update Email</a></p>
+  			<hr>
+          <p>${{currentUser.profile.bank}} - {{currentUser.profile.rank}}</p>
         </div>
         <div class="card-action">
               {{> gameList }}
         </div>
         
   	</div>
-
 </template>
 
 <template name='notLoggedIn'>
@@ -64,10 +65,16 @@
 </template>
 
 <template name='gameItem'>
-		<a href="/game/{{_id}}"> Game with {{otherPlayer}} that started
+		<a href="/game/{{_id}}"> 
+			{{#if yourTurn}}
+		        <div class='waves-effect waves-light btn red center'>its your turn</div>
+		    {{else}}
+		        <div class='waves-effect waves-light btn'>not your turn</div>
+		    {{/if}}
+			<div>Game with {{otherPlayer}} that started</div>
 			{{#if inProgress}}
 				{{started}}
-			{{/if}}
+			{{/if}} 
 		</a>
 </template>
 
@@ -75,7 +82,7 @@
 	<li class="collection-item avatar">
       <img height='90%' src="{{profile.profile_img}}" alt="" class="circle">
       <span class="title">{{profile.name}}</span>
-      <p>$5,000</p>
+      <p>{{profile.bank}}</p>
       <p><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i><i class='mdi-action-star-rate'></i></p>
       <a href="#!" class="secondary-content userItem btn-large waves-effect waves-light red">Invite</a>
     </li>

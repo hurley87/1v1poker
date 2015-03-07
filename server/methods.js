@@ -1,4 +1,5 @@
 Meteor.methods({
+  // stripe
   getClientToken: function (clientId) {
     var generateToken = Meteor.wrapAsync(gateway.clientToken.generate, gateway.clientToken);
     var options = {};
@@ -31,7 +32,16 @@ Meteor.methods({
     return response;
   },
   createGame: function(otherPlayerId) {
-	var game =  GameFactory.createGame([Meteor.userId(), otherPlayerId]);
-	Games.insert(game);
-  }
+  	var game =  GameFactory.createGame([Meteor.userId(), otherPlayerId]);
+  	Games.insert(game);
+  },
+  facebook_email: function(id) {
+    var userEmail = Meteor.users.find({ _id: id}).fetch()[0].profile.email;
+    if (userEmail == null) {
+      return 'No email'
+    } else {
+      return userEmail;
+    }
+  },
+
 });
