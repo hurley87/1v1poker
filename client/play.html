@@ -8,26 +8,48 @@
 
 <template name='status'>
 	<div class='row'>
-		<div class='col s12 m6 l3 offset-l1'>
-			
+		<div class='col s12 m4 l3'>
 			<div class="card">
-				  <a class='dgame waves-effect waves-light btn red' href="/">End Game</a>
-		          <h4><img height='50' src="{{otherPlayer.profile.profile_img}}"> {{otherPlayer.profile.name}}</h4>
+				<div></div>
+				<a class='dgame waves-effect waves-light btn red' href="/">End Game</a>
+				<div class='container'>
+				  <div class="card-image">
+				  	<img src="{{otherPlayer.profile.profile_img}}"> 
+				  </div>	
+		          <h6> {{otherPlayer.profile.name}}</h6>
 		  		  <p><span class='userEmail'>{{{email}}}</span></p>
 		          <p>${{otherPlayer.profile.bank}} - {{otherPlayer.profile.rank}}</p>
+		   		 </div> 
 		          {{> chat}}
+
 		  	</div>
 		</div>
-		<div class='col s12 m6 l7'>
+		<div class='col s12 m6 l6'>
 		{{> board}}
 		{{> myHand}}
+		</div>
+		<div  class='col s12 m2 l2 offset-l1'>
+			<div class='card'>
+
+				 <h6> {{otherPlayer.profile.name}}</h6>
+		  		  <p><span class='userEmail'>{{{email}}}</span></p>
+		  	</div>	
+		  		  <h5 class='valign'><a class='waves-effect waves-light btn btn-large'>Pass</a></h5>
+		  	
+				 <h5 class='valign'><a class='waves-effect waves-light btn btn-large'>Fold</a></h5>
+				 
+				 <h4 class="range-field">
+				    <input type="range" id="test5" min="0" max="100" />
+				  </h4>
+				  <h5 class='valign'><a class='waves-effect waves-light btn btn-large'>Bet</a></h5>
+			
 		</div>
 	</div>
 </template>
 
 <template name='board'>
 	<div class='row'>
-		<div class='col s12 m12 l6'>
+		<div class='col s12 m12 l8'>
 			<h4>Flop</h4>
 			{{#each flop}}
 				{{> boardCard}}
@@ -39,7 +61,7 @@
 				{{> boardCard}}
 			{{/each}}
 		</div>
-		<div class='col s3 m3 l2'>
+		<div class='col s3 m3 l1'>
 			<h4>River</h4>
 			{{#each river}}
 				{{> boardCard}}
@@ -55,25 +77,6 @@
 			{{#each myHand}}
 				{{> boardCard}}
 			{{/each}}
-		</div>
-		<div class='col s5 m3 l3 '>
-			<div class='left'>
-			<br>
-			<br>
-			<h5 class='valign'><a class='waves-effect waves-light btn btn-large right'>Pass</a></h5>
-			<br>
-			<h5><a class='waves-effect waves-light btn btn-large right'>Fold</a></h5>
-			</div>
-		</div>
-		<div class='col s5 m6 l2'>
-			<br>
-			<br>
-			<form action="#">
-			  <p class="range-field">
-			    <input type="range" id="test5" min="0" max="100" />
-			  </p>
-			  <h5><a class='bet waves-effect waves-light btn btn-large right' href="/">Bet</a></h5>
-			</form>
 		</div>
 	</div>
 </template>	
